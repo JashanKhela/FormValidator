@@ -100,3 +100,24 @@ border-color:var(--success-color);
     margin-top: 20px;
     width: 100%;
 }
+
+.__repsonseText {
+    display: flex;
+    justify-content: center;
+    padding: 25px;
+    font-weight: bold;
+    visibility: hidden;
+}
+
+.__repsonseText.failed {
+ color: var(--error-color);
+ visibility: visible;
+
+}
+
+.__repsonseText.succeded {
+    color: var(--success-color);
+    visibility: visible;
+
+   }
+

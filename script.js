@@ -3,6 +3,8 @@ const username = document.getElementById('username');
 const email = document.getElementById('email');
 const password = document.getElementById('password');
 const password2 = document.getElementById('password2');
+const response = document.getElementById('__repsonseText');
+
 
 //show input error message
 const showError = (input,message) => {
@@ -33,7 +35,6 @@ const checkEmail = (input) => {
 const checkRequired = (inputArray) => {
     inputArray.forEach(input => {
         if(input.value.trim() === ''){
-            console.log(input)
             showError(input, `${getFieldName(input)} is required`)
         }
     });
@@ -64,12 +65,19 @@ if(input.value.length < min ){
 }
 
 //check match password
-
 const matchPassword = (input1 , input2) => {
+    console.log(input2.value);
+    if(input2.value === ''){
+        showError(input2,'lol');
+    }
     if(input1.value !== input2.value){
-        showError(input2,'Passwords Do Not Match')
+        showError(input2,'Passwords Do Not Match');
     } else {
-        showSuccess(input2)
+        if(input2.value === ''){
+            showError(input2,'Please Enter A Password To Confirm');
+        }else {
+            showSuccess(input2);
+        }
     }
 }
 
@@ -80,5 +88,15 @@ form.addEventListener('submit', (e) => {
     checkLength(password , 6 , 20);
     checkEmail(email);
     matchPassword(password,password2);
+    let error = document.querySelector('.error');
+    console.log(error)
+    if(error !== null){
+        response.className = '__repsonseText failed';
+        response.innerText = 'Please Correct Error(s) Above';
+    } else {
+        response.className = '__repsonseText succeded';
+        response.innerText = 'Form Submitted';
+    }
+
 });
 
